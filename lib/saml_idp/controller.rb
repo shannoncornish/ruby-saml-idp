@@ -62,7 +62,7 @@ module SamlIdp
       def encode_SAMLResponse(nameID, opts = {})
         now = Time.now.utc
         response_id, reference_id = UUID.generate, UUID.generate
-        audience_uri = opts[:audience_uri] || saml_acs_url[/^(.*?\/\/.*?\/)/, 1]
+        audience_uri = opts[:audience_uri] || @saml_acs_url[/^(.*?\/\/.*?\/)/, 1]
         issuer_uri = opts[:issuer_uri] || (defined?(request) && request.url) || "http://example.com"
         attributes_statement = attributes(opts[:attributes_provider], nameID)
 
